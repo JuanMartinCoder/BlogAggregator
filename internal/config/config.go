@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"os"
 	"path/filepath"
+
+	"github.com/JuanMartinCoder/BlogAggregator/internal/database"
 )
 
 const configFileName = ".gatorconfig.json"
@@ -14,6 +16,7 @@ type Config struct {
 }
 type State struct {
 	Cfg *Config
+	DB  *database.Queries
 }
 
 func getConfigPath() (string, error) {
