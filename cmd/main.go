@@ -8,6 +8,7 @@ import (
 	"github.com/JuanMartinCoder/BlogAggregator/cmd/commands"
 	"github.com/JuanMartinCoder/BlogAggregator/internal/config"
 	"github.com/JuanMartinCoder/BlogAggregator/internal/database"
+	"github.com/JuanMartinCoder/BlogAggregator/middleware"
 
 	_ "github.com/lib/pq"
 )
@@ -38,8 +39,11 @@ func main() {
 	cmds.Register("reset", commands.ResetHandler)
 	cmds.Register("users", commands.UsersHandler)
 	cmds.Register("agg", commands.AggHandler)
-	cmds.Register("addfeed", commands.FeedHandler)
+	cmds.Register("addfeed", middleware.MiddlewareLoggedIn(commands.FeedHandler))
 	cmds.Register("feeds", commands.FeedsHandler)
+	cmds.Register("follow", middleware.MiddlewareLoggedIn(commands.FollowHandler))
+	cmds.Register("following", middleware.MiddlewareLoggedIn(commands.FollowingHandler))
+	cmds.Register("unfollow", middleware.MiddlewareLoggedIn(commands.UnfollowHandler))
 
 	if len(os.Args) < 2 {
 		log.Fatal("No command provided")
