@@ -44,6 +44,7 @@ func main() {
 	cmds.Register("follow", middleware.MiddlewareLoggedIn(commands.FollowHandler))
 	cmds.Register("following", middleware.MiddlewareLoggedIn(commands.FollowingHandler))
 	cmds.Register("unfollow", middleware.MiddlewareLoggedIn(commands.UnfollowHandler))
+	cmds.Register("browse", middleware.MiddlewareLoggedIn(commands.BrowseHandler))
 
 	if len(os.Args) < 2 {
 		log.Fatal("No command provided")
