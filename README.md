@@ -1,5 +1,5 @@
 # TO BE DONE
-# Gator
+# gator
 
 You will need to install the following:
 
